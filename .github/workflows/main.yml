@@ -24,6 +24,7 @@ jobs:
         GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
       run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} donuts_bot
   release:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Release
