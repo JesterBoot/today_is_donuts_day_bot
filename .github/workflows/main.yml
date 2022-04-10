@@ -22,6 +22,7 @@ jobs:
         API_TOKEN: ${{ secrets.API_TOKEN  }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
         GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
+        BOT_USERNAME: ${{  secrets.BOT_USERNAME }}
       run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} donuts_bot
   release:
     needs: build
@@ -33,4 +34,5 @@ jobs:
         API_TOKEN: ${{ secrets.API_TOKEN  }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
         GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
+        BOT_USERNAME: ${{  secrets.BOT_USERNAME }}
       run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} donuts_bot

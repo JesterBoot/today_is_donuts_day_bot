@@ -7,7 +7,7 @@ from aiogram.utils.exceptions import BotKicked, ChatNotFound
 
 from constants import stickers
 from main import dp, bot
-from settings import GROUP_CHAT_ID, CHAT_ID
+from settings import GROUP_CHAT_ID, CHAT_ID, BOT_USERNAME
 
 
 @dp.message_handler(commands=['start'])
@@ -39,11 +39,16 @@ async def send_welcome_message(message: types.Message):
         )
 
 
-@dp.message_handler(
-    lambda message: message.text and '@today_is_donuts_day_bot' in message.text.lower()
-)
+@dp.message_handler()
 async def echo_with_sticker(message: types.Message):
-    await message.answer_sticker(sticker=random.choice(stickers.DONUTS), disable_notification=True)
+    if message.reply_to_message:  # Ловлю ответы на сообщения бота
+        if (
+            message.reply_to_message.from_user.is_bot
+            and message.reply_to_message.from_user.username == BOT_USERNAME
+        ):
+            await message.answer_sticker(
+                sticker=random.choice(stickers.DONUTS), disable_notification=True
+            )
 
 
 async def today_is_donuts_day():  # Не стал заморачиваться с выносом в отдельный файл
