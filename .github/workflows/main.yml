@@ -1,11 +1,11 @@
 name: Push Container to Heroku
 
 on:
-  push
+  push:
 #    paths:
 #      - .github/*
-#    branches:
-#      - master
+    branches:
+      - master
 
 jobs:
   build:
