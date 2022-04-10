@@ -1,1 +1,3 @@
-# today_is_donuts_day_bot
+# today is donuts day bot
+
+Simplest tg bot for notification about donuts day!
