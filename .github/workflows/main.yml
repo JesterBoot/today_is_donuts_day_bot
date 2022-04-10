@@ -1,6 +1,11 @@
 name: Push Container to Heroku
 
-on: [push]
+on:
+  push
+#    paths:
+#      - .github/*
+#    branches:
+#      - master
 
 jobs:
   build:
@@ -18,6 +23,9 @@ jobs:
         CHAT_ID: ${{ secrets.CHAT_ID }}
         GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
       run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} donuts_bot
+  release:
+    runs-on: ubuntu-latest
+    steps:
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
